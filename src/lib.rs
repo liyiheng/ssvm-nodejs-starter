@@ -69,14 +69,17 @@ pub fn get_buffer_size() -> usize {
 
 #[wasm_bindgen]
 pub fn draw(
-    outer_r: f64,
-    inner_r: f64,
-    dist: f64,
+    outer_r: u32,
+    inner_r: u32,
+    dist: u32,
     square_size: u32,
     r: u8,
     g: u8,
     b: u8,
 ) -> Vec<u8> {
+    let outer_r = outer_r as f64;
+    let inner_r = inner_r as f64;
+    let dist = dist as f64;
     let mut p = Pannel {
         outer_r,
         inner_r,
