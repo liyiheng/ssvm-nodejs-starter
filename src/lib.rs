@@ -75,8 +75,9 @@ pub fn draw(
     square_size: u32,
     r: u8,
     g: u8,
-    b: u8,
+    blue: u8,
 ) -> Vec<u8> {
+    let b = blue;
     let outer_r = outer_r as f64;
     let inner_r = inner_r as f64;
     let dist = dist as f64;

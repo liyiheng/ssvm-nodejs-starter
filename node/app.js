@@ -16,8 +16,8 @@ const server = http.createServer((req, res) => {
     square_size = queryObject['square_size']
     r = queryObject['r']
     g = queryObject['g']
-    b = queryObject['b']
-    var img = draw(outer_r, inner_r, dist, square_size, r, g, b);
+    blue = queryObject['b']
+    var img = draw(outer_r, inner_r, dist, square_size, r, g, blue);
     res.writeHead(200, {'Content-Type': 'image/png' });
     res.end(img, 'binary');
     return;
