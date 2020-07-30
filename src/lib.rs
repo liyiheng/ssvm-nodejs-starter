@@ -26,11 +26,27 @@ impl Square {
     }
 
     fn set_point(&mut self, x: f64, y: f64, r: u8, g: u8, b: u8, a: u8) {
+        let size = match self {
+            Square::Canvas(_, size) => *size as isize,
+            Square::Img(_, size) => *size as isize,
+        };
+        let center = size / 2;
+        let mut x = (x as isize) + center;
+        let mut y = (y as isize) + center;
+        if x < 0 {
+            x = 0;
+        };
+        if y < 0 {
+            y = 0;
+        };
+        if x >= size {
+            x = size - 1
+        };
+        if y >= size {
+            y = size - 1
+        };
         match self {
-            Square::Canvas(meta, size) => {
-                let center = (*size / 2) as isize;
-                let x = (x as isize) + center;
-                let y = (y as isize) + center;
+            Square::Canvas(meta, _) => {
                 let idx = (x * y * 4) as usize;
                 meta[idx] = r;
                 meta[idx] = g;

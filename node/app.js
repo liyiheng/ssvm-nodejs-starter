@@ -7,16 +7,17 @@ const hostname = '0.0.0.0';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  const queryObject = url.parse(req.url,true).query;
-  const action = request.pathname;
+  const u = url.parse(req.url,true);
+  const queryObject = u.query;
+  const action = u.pathname;
   if (action == '/draw') {
-    outer_r = queryObject['outer_r']
-    inner_r = queryObject['inner_r']
-    dist = queryObject['dist']
-    square_size = queryObject['square_size']
-    r = queryObject['r']
-    g = queryObject['g']
-    blue = queryObject['b']
+    outer_r = parseInt(queryObject['outer_r'])
+    inner_r = parseInt(queryObject['inner_r'])
+    dist = parseInt(queryObject['dist'])
+    square_size = parseInt(queryObject['square_size'])
+    r = parseInt(queryObject['r'])
+    g = parseInt(queryObject['g'])
+    blue = parseInt(queryObject['b'])
     var img = draw(outer_r, inner_r, dist, square_size, r, g, blue);
     res.writeHead(200, {'Content-Type': 'image/png' });
     res.end(img, 'binary');
