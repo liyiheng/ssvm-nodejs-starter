@@ -1,6 +1,6 @@
-const { say } = require('../pkg/ssvm_nodejs_starter_lib.js');
 const { draw } = require('../pkg/ssvm_nodejs_starter_lib.js');
 const buffer = require('buffer');
+var fs = require("fs");
 
 
 const http = require('http');
@@ -25,11 +25,11 @@ const server = http.createServer((req, res) => {
     res.end(buffer.transcode(img, 'binary', 'binary'), 'binary');
     return;
   }
-  if (!queryObject['name']) {
-    res.end(`Please use command curl http://${hostname}:${port}/?name=MyName \n`);
-  } else {
-    res.end(say(queryObject['name']) + '\n');
-  }
+  fs.readFile("index.html", function(err, data){
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
 });
 
 server.listen(port, hostname, () => {
