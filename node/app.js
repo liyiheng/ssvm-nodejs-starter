@@ -1,5 +1,7 @@
 const { say } = require('../pkg/ssvm_nodejs_starter_lib.js');
 const { draw } = require('../pkg/ssvm_nodejs_starter_lib.js');
+const buffer = require('buffer');
+
 
 const http = require('http');
 const url = require('url');
@@ -20,7 +22,7 @@ const server = http.createServer((req, res) => {
     blue = parseInt(queryObject['b'])
     var img = draw(outer_r, inner_r, dist, square_size, r, g, blue);
     res.writeHead(200, {'Content-Type': 'image/png' });
-    res.end(img, 'binary');
+    res.end(buffer.transcode(img, 'binary', 'binary'), 'binary');
     return;
   }
   if (!queryObject['name']) {
