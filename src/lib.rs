@@ -53,12 +53,7 @@ impl Square {
                 meta[idx] = b;
                 meta[idx] = a;
             }
-            Square::Img(img, size) => {
-                let center = (*size / 2) as isize;
-                let x = (x as isize) + center;
-                let y = (y as isize) + center;
-                img.put_pixel(x as u32, y as u32, image::Rgba([r, g, b, a]))
-            }
+            Square::Img(img, _) => img.put_pixel(x as u32, y as u32, image::Rgba([r, g, b, a])),
         }
     }
 
